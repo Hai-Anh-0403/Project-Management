@@ -25,7 +25,8 @@
     width: 150px;
     background: #323232;
     color: #fff;
-    height: calc(100vh - 56px); /* FIX: thêm dấu cách */
+    height: calc(100vh - 56px);
+    /* FIX: thêm dấu cách */
     position: fixed;
     top: 56px;
     left: 0;
@@ -35,8 +36,10 @@
 /* MAIN CONTENT */
 .body .main {
     margin: 15px;
-    margin-left: 170px; /* tránh đè sidebar */
-    width: calc(100% - 180px); /* FIX: thêm dấu cách */
+    margin-left: 170px;
+    /* tránh đè sidebar */
+    width: calc(100% - 180px);
+    /* FIX: thêm dấu cách */
 }
 
 /* OPTIONAL: style đẹp hơn */
@@ -51,15 +54,54 @@
     background: #444;
     border-radius: 4px;
 }
-.sider .inner-menu ul{
+
+.sider .inner-menu ul {
     list-style: none;
     padding: 0;
     margin: 0;
 
 }
-.sider .inner-menu ul li a{
+
+.sider .inner-menu ul li a {
     color: #fff;
     display: block;
     padding: 6px 10px;
     border-bottom: 1px solid #515151;
+}
+
+[show-alert] {
+    position: fixed;
+    top: 70px;
+    right: 15px;
+    z-index: 9999;
+}
+
+[show-alert].alert-hidden {
+    animation-name: alert-hidden;
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+
+}
+
+@keyframes alert-hidden {
+    form {
+        right: 15px;
+    }
+
+    to {
+        right: -100%;
+        display: none;
+    }
+}
+
+[show-alert] [close-alert] {
+    background: #ffffffc4;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    line-height: 24xp;
+    text-align: center;
+    font-weight: 600;
+    border-radius: 50%;
+    cursor: pointer;
 }
