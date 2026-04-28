@@ -11,14 +11,15 @@ block main
     +alert-success(5000)
     
     h1 Trang danh sách sản phẩm
+  
 
     .card.mb-3
         .card-header Bộ lọc và tìm kiếm
-            .card-body
-                .row
-                    .col-6
-                       +filter-status(filterStatus)
-                    .col-6
+        .card-body
+            .row
+                .col-6
+                    +filter-status(filterStatus)
+                .col-6
                         +search(keyword)
     .card.mb-3
         .card-header Danh Sách
@@ -29,7 +30,7 @@ block main
                     .col-4
                         a(
                             href=`${prefixAdmin}/products/create`
-                        classs="btn btn-outline-success"
+                        class="btn btn-outline-success"
                         ) + Thêm mới
               
                         

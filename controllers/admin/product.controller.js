@@ -1,17 +1,21 @@
-//[GET] /adim/products
+//[GET] /admin/products
 const Product = require("../../models/product.model");
+
+const systemConfig = require("../../config/systems")
 const filterStatusHelper = require("../../helpers/filterStatus");
 const searchHelper = require("../../helpers/search");
 const paginationHelper = require("../../helpers/pagination");
 
 
 module.exports.index = async (req, res) => {
+
     const filterStatus = filterStatusHelper(req.query);
 
     let find = {
         deleted: false,
 
     };
+
     if (req.query.status) {
         find.status = req.query.status;
     }
@@ -88,7 +92,8 @@ module.exports.changeMulti = async (req, res) => {
                 position = parseInt(position);
                 await Product.updateOne({ _id: id }, { position: position });
             }
-            req.flash('success', `Thay đ thành công ${ids.length} sản phẩm!`);
+            req.flash('success', `Thay đổi thành công ${ids.length} sản phẩm!`);
+            break;
 
         default:
             break;
@@ -118,4 +123,23 @@ module.exports.create = async (req, res) => {
     res.render("admin/pages/products/create", {
         PageTitle: "Thêm mới sản phẩm"
     });
-}
+};
+//[POST] /adim/products/create
+module.exports.createPost = async (req, res) => {
+    console.log("BODY:", req.body);
+    console.log("PRICE RAW:", req.body.price);
+    console.log("PRICE NUMBER:", Number(req.body.price));
+    req.body.price = parseInt(req.body.price);
+    req.body.discountPercentage = parseInt(req.body.discountPercentage);
+    req.body.stock = parseInt(req.body.stock);
+    if (req.body.position == "") {
+        const countProducts = await Product.countDocuments();
+        req.body.position = countProducts + 1;
+    } else {
+        req.body.position = parseInt(req.body.position);
+    }
+    req.body.thumbnail = `/upload/${req.file.filename}`;
+    const product = new Product(req.body);
+    await product.save();
+    res.redirect(`${systemConfig.prifixAdmin}/products`);
+};

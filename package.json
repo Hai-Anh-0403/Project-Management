@@ -15,11 +15,13 @@
     "cookie-parser": "^1.4.7",
     "dotenv": "^17.3.1",
     "env": "^0.0.2",
-    "express": "^5.2.1",
+    "express": "^4.22.1",
     "express-flash": "^0.0.2",
     "express-session": "^1.19.0",
     "method-override": "^3.0.0",
     "mongoose": "^9.2.1",
+    "mongoose-slug-updater": "^3.3.0",
+    "multer": "^2.1.1",
     "pug": "^3.0.3"
   },
   "devDependencies": {

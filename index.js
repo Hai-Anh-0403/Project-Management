@@ -6,6 +6,7 @@ const database = require("./config/database");
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+const multer = require('multer');
 
 
 
@@ -16,7 +17,12 @@ app.use(methodOverride('_method'));
 app.use(bodyParser.urlencoded({ extended: false }));
 //flash
 app.use(cookieParser('batky'));
-app.use(session({ cookie: { maxAge: 60000 } }));
+app.use(session({
+    resave: false,
+    secret: 'batky',
+    saveUninitialized: false
+    , cookie: { maxAge: 60000 }
+}));
 app.use(flash());
 //end flash
 const systemConfig = require("./config/systems")

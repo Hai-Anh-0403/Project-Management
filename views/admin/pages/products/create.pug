@@ -3,9 +3,10 @@ extends ../../layouts/default.pug
 block main 
     h1(class="mb-4") Thêm mới sản phẩm
     form(
-        action=`/${prefixAdmin}/products/create`
+        action=`${prefixAdmin}/products/create`
         id="form-create-product"
         method="POST"
+        enctype="multipart/form-data"
         ) 
             div(class="form-group")
                 label(for="tile") Tiêu đề
@@ -24,7 +25,7 @@ block main
                 label(for="price") Giá
                 input(type="number"
                 class="form-control"
-                id="price"
+                name="price"
                 value="0"
                 min="0")
             div(class="form-group")
@@ -45,10 +46,11 @@ block main
                 min="0")
             div(class="form-group")
                 label(for="thumbnail") Ảnh
-                input(type="text"
-                class="form-control"
+                input(type="file"
+                class="form-control-file"
                 id="thumbnail"
-                name="thumbnail")
+                name="thumbnail"
+                accept="image/*")
             div(class="form-group")
                 lbel(for="position") Vị trí
                 input(type="number"
@@ -59,9 +61,20 @@ block main
                 min="1")
             div(class="form-group form-check form-check-inline")
                 input(type="radio"
-                class="form-check-input"
-                id="statusActive"
-                name="status"
-                value="active"
-                checked)
+                    class="form-check-input"
+                    id="statusActive"
+                    name="status"
+                    value="active"
+                    checked)
+                label(for="statusInActive" class="form-check-label") Hoạt động
+            div(class="form-group form-check form-check-inline")
+                input(type="radio"
+                    class="form-check-input"
+                    id="statusInActive"
+                    name="status"
+                    value="inactive")
+                label(for="statusInActive" class="form-check-label") Dừng hoạt động
+            div(class="form-group")
+                button(type="submit"
+                    class="btn btn-primary") Tạo mới
     script(src="/admin/js/product.js")
