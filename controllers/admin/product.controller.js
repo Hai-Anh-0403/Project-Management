@@ -126,6 +126,17 @@ module.exports.create = async (req, res) => {
 };
 //[POST] /adim/products/create
 module.exports.createPost = async (req, res) => {
+    if (!req.body.title) {
+        req.flash("error", "Vui lòng nhập tiêu đề");
+        res.redirect("back");
+        return;
+    }
+    if (!req.body.title.length < 8) {
+        req.flash("error", "Vui lòng nhập tiêu đề ít nhất 8 ký tự");
+        res.redirect("back");
+        return;
+    }
+
     console.log("BODY:", req.body);
     console.log("PRICE RAW:", req.body.price);
     console.log("PRICE NUMBER:", Number(req.body.price));
