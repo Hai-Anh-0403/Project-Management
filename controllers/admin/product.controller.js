@@ -124,7 +124,7 @@ module.exports.create = async (req, res) => {
         pageTitle: "Thêm mới sản phẩm"
     });
 };
-//[POST] /adim/products/create
+//[POST] /admin/products/create
 module.exports.createPost = async (req, res) => {
 
     req.body.price = parseInt(req.body.price);
@@ -203,6 +203,6 @@ module.exports.detail = async (req, res) => {
             product: product
         });
     } catch (error) {
-
+        console.log(error)
     }
 };
